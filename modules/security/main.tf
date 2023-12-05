@@ -66,3 +66,29 @@ resource "aws_security_group_rule" "allow_ssh" {
   ipv6_cidr_blocks  = ["${chomp(data.http.myipv6address.response_body)}/128"]
   security_group_id = aws_security_group.allow_ssh.id
 }
+
+resource "aws_security_group" "allow_port_3000" {
+  name        = "allow_port_3000"
+  description = "allows ingress on port 3000 for lighting application"
+  vpc_id      = var.vpc_id
+}
+
+resource "aws_security_group_rule" "allow_ingress_port_3000" {
+  type              = "ingress"
+  from_port         = 3000
+  to_port           = 3000
+  protocol          = "tcp"
+  cidr_blocks       = local.ipv4_all_cidr_blocks
+  ipv6_cidr_blocks  = local.ipv6_all_cidr_blocks
+  security_group_id = aws_security_group.allow_port_3000.id
+}
+
+resource "aws_security_group_rule" "allow_egress_port_3000" {
+  type              = "egress"
+  from_port         = 3000
+  to_port           = 3000
+  protocol          = "tcp"
+  cidr_blocks       = local.ipv4_all_cidr_blocks
+  ipv6_cidr_blocks  = local.ipv6_all_cidr_blocks
+  security_group_id = aws_security_group.allow_port_3000.id
+}
