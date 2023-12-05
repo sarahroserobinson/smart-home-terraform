@@ -20,6 +20,14 @@ module "lighting_service" {
   ami_id_lighting_server = var.ami_id_lighting_server
 }
 
+module "heating_service" {
+  source                 = "./modules/heating_service"
+  security_groups_ids    = module.security.security_groups_ids
+  instance_type          = var.instance_type
+  public_subnet_ids      = module.vpc.public_subnets_ids
+}
+
 module "database" {
   source = "./modules/database"
+  database_tables_names = var.database_tables_names
 }
