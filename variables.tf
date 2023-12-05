@@ -22,3 +22,13 @@ variable "private_subnets" {
   description = "CIDR ranges for private subnets"
 }
 
+variable "instance_type" {
+  type        = string
+  description = "type of instance to be used for creating lighting EC2 instance"
+}
+
+variable "ami_id_lighting_server" {
+  type        = string
+  description = "ami image id for lighting server with preconfigured git repo and pm2 startup"
+
+}
