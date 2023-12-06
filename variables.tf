@@ -27,19 +27,18 @@ variable "instance_type" {
   description = "type of instance to be used for creating lighting EC2 instance"
 }
 
-variable "ami_id_lighting_server" {
-  type        = string
-  description = "ami image id for lighting server with preconfigured git repo and pm2 startup"
 
-}
-
-variable "ami_id_heating_server" {
-  type        = string
-  description = "ami image id for heating server with preconfigured git repo and pm2 startup"
-
+variable "ami_ids" {
+  type        = list(string)
+  description = "AMI ids to use in lighting, heating, status servers"
 }
 
 variable "database_tables_names" {
   type        = list(string)
   description = "names for dynamodb tables"
+}
+
+variable "server_names" {
+  type        = list(string)
+  description = "names for servers"
 }

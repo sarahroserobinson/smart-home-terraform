@@ -12,22 +12,16 @@ module "security" {
   vpc_id = module.vpc.vpc_id
 }
 
-module "lighting_service" {
-  source                 = "./modules/lighting_service"
-  security_groups_ids    = module.security.security_groups_ids
-  instance_type          = var.instance_type
-  public_subnet_ids      = module.vpc.public_subnets_ids
-  ami_id_lighting_server = var.ami_id_lighting_server
-}
-
-module "heating_service" {
-  source                 = "./modules/heating_service"
-  security_groups_ids    = module.security.security_groups_ids
-  instance_type          = var.instance_type
-  public_subnet_ids      = module.vpc.public_subnets_ids
+module "servers" {
+  source              = "./modules/servers"
+  security_groups_ids = module.security.security_groups_ids
+  instance_type       = var.instance_type
+  public_subnet_ids   = module.vpc.public_subnets_ids
+  ami_ids             = var.ami_ids 
+  server_names        = var.server_names
 }
 
 module "database" {
-  source = "./modules/database"
+  source                = "./modules/database"
   database_tables_names = var.database_tables_names
 }

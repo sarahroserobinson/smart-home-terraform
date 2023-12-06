@@ -12,3 +12,14 @@ variable "public_subnet_ids" {
   type        = list(string)
   description = "ids of all public subnets"
 }
+
+variable "server_names" {
+  type = list(string)
+  description = "names for servers"
+}
+
+variable "ami_ids" {
+  type        = list(string)
+  description = "AMI ids to use in lighting, heating, status servers"
+}
+
