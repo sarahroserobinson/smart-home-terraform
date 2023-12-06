@@ -12,3 +12,8 @@ variable "public_subnet_ids" {
   type        = list(string)
   description = "ids of all public subnets"
 }
+
+variable "ami_id_status_server" {
+  type        = string
+  description = "AMI id to use in status EC2 instance"
+}

@@ -12,3 +12,8 @@ variable "public_subnet_ids" {
   type        = list(string)
   description = "ids of all public subnets"
 }
+
+variable "ami_id_heating_server" {
+  type        = string
+  description = "AMI id to use in heating EC2 instance"
+}

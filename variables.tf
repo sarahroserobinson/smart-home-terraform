@@ -30,13 +30,16 @@ variable "instance_type" {
 variable "ami_id_lighting_server" {
   type        = string
   description = "ami image id for lighting server with preconfigured git repo and pm2 startup"
-
 }
 
 variable "ami_id_heating_server" {
   type        = string
   description = "ami image id for heating server with preconfigured git repo and pm2 startup"
+}
 
+variable "ami_id_status_server" {
+  type        = string
+  description = "ami image id for heating server with preconfigured git repo and pm2 startup"
 }
 
 variable "database_tables_names" {

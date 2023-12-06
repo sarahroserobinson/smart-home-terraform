@@ -21,13 +21,21 @@ module "lighting_service" {
 }
 
 module "heating_service" {
-  source                 = "./modules/heating_service"
-  security_groups_ids    = module.security.security_groups_ids
-  instance_type          = var.instance_type
-  public_subnet_ids      = module.vpc.public_subnets_ids
+  source                = "./modules/heating_service"
+  security_groups_ids   = module.security.security_groups_ids
+  instance_type         = var.instance_type
+  public_subnet_ids     = module.vpc.public_subnets_ids
+  ami_id_heating_server = var.ami_id_heating_server
 }
 
+module "status_service" {
+  source               = "./modules/status_service"
+  security_groups_ids  = module.security.security_groups_ids
+  instance_type        = var.instance_type
+  public_subnet_ids    = module.vpc.public_subnets_ids
+  ami_id_status_server = var.ami_id_status_server
+}
 module "database" {
-  source = "./modules/database"
+  source                = "./modules/database"
   database_tables_names = var.database_tables_names
 }

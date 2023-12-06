@@ -16,5 +16,4 @@ variable "public_subnet_ids" {
 variable "ami_id_lighting_server" {
   type        = string
   description = "AMI id to use in lighting EC2 instance"
-
 }
