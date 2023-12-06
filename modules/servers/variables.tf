@@ -13,7 +13,13 @@ variable "public_subnet_ids" {
   description = "ids of all public subnets"
 }
 
-variable "ami_id_lighting_server" {
-  type        = string
-  description = "AMI id to use in lighting EC2 instance"
+variable "server_names" {
+  type = list(string)
+  description = "names for servers"
 }
+
+variable "ami_ids" {
+  type        = list(string)
+  description = "AMI ids to use in lighting, heating, status servers"
+}
+
