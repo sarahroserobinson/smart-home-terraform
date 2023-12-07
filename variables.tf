@@ -38,7 +38,18 @@ variable "database_tables_names" {
   description = "names for dynamodb tables"
 }
 
-variable "server_names" {
+variable "service_names" {
   type        = list(string)
   description = "names for servers"
+}
+
+
+variable "target_group_paths" {
+  type        = list(string)
+  description = "paths for servers to be used in loadbalancer target groups"
+}
+
+variable "key_name" {
+  type        = string
+  description = "name of security key"
 }
