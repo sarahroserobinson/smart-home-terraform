@@ -18,8 +18,10 @@ module "servers" {
   instance_type       = var.instance_type
   public_subnet_ids   = module.vpc.public_subnets_ids
   ami_ids             = var.ami_ids
-  server_names        = var.server_names
+  service_names       = var.service_names
+  key_name            = var.key_name
 }
+
 
 module "database" {
   source                = "./modules/database"
@@ -32,4 +34,7 @@ module "loadbalancer" {
   server_instance_ids = module.servers.server_instance_ids
   security_groups_ids = module.security.security_groups_ids
   public_subnet_ids   = module.vpc.public_subnets_ids
+  service_names       = var.service_names
+  target_group_paths  = var.target_group_paths
+  
 }
