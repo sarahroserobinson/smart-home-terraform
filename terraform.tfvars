@@ -9,3 +9,6 @@ service_names         = ["lighting", "heating", "status"]
 ami_ids               = ["ami-0e6ba473035021977", "ami-071bc604218b1e5d7", "ami-011f5b87edc3fad57"]
 key_name              = "project-smart-home"
 target_group_paths    = ["lights", "heating", "status"]
+min_size              = 1
+max_size              = 3
+desired_capacity      = 1

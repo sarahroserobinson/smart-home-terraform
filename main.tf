@@ -36,5 +36,20 @@ module "loadbalancer" {
   public_subnet_ids   = module.vpc.public_subnets_ids
   service_names       = var.service_names
   target_group_paths  = var.target_group_paths
-  
+
 }
+
+module "autoscaling" {
+  source                          = "./modules/autoscaling"
+  public_subnet_ids               = module.vpc.public_subnets_ids
+  key_name                        = var.key_name
+  service_names                   = var.service_names
+  ami_ids                         = var.ami_ids
+  security_groups_ids             = module.security.security_groups_ids
+  instance_type                   = var.instance_type
+  load_balancer_target_group_arns = module.loadbalancer.load_balancer_target_group_arns
+  min_size                        = var.min_size
+  max_size                        = var.max_size
+  desired_capacity                = var.desired_capacity
+}
+

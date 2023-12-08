@@ -53,3 +53,19 @@ variable "key_name" {
   type        = string
   description = "name of security key"
 }
+
+variable "min_size" {
+  type        = number
+  description = "number of minimum instances"
+
+}
+
+variable "max_size" {
+  type        = number
+  description = "number of maximum instances"
+
+}
+variable "desired_capacity" {
+  type        = number
+  description = "number of desired instances"
+}

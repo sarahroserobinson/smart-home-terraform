@@ -1,10 +1,9 @@
 resource "aws_lb" "lb_main" {
-  name                       = "lbmain"
-  load_balancer_type         = "application"
-  internal                   = false
-  security_groups            = var.security_groups_ids
-  subnets                    = var.public_subnet_ids
-  enable_deletion_protection = true
+  name               = "lbmain"
+  load_balancer_type = "application"
+  internal           = false
+  security_groups    = var.security_groups_ids
+  subnets            = var.public_subnet_ids
 }
 
 resource "aws_lb_target_group" "target_group" {
@@ -36,7 +35,7 @@ resource "aws_lb_listener" "lb_listener" {
   port              = 3000
   protocol          = "HTTP"
   default_action {
-    type = "forward"
+    type             = "forward"
     target_group_arn = aws_lb_target_group.target_group[2].arn
   }
   tags = {
@@ -45,18 +44,18 @@ resource "aws_lb_listener" "lb_listener" {
 }
 
 resource "aws_lb_listener_rule" "listener_rule" {
-    count = 2
-    listener_arn = aws_lb_listener.lb_listener.arn
+  count        = 2
+  listener_arn = aws_lb_listener.lb_listener.arn
 
-    action {
-      type = "forward"
-      target_group_arn = aws_lb_target_group.target_group[count.index].arn
-    }
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.target_group[count.index].arn
+  }
 
-    condition {
-      path_pattern {
-        values = ["/api/${var.target_group_paths[count.index]}*"]
-      }
+  condition {
+    path_pattern {
+      values = ["/api/${var.target_group_paths[count.index]}*"]
     }
+  }
 }
 

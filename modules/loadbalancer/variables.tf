@@ -4,8 +4,8 @@ variable "vpc_id" {
 }
 
 variable "server_instance_ids" {
-    type = list(string)
-    description = "instance ids of servers to be used in target group for loadbalancer"
+  type        = list(string)
+  description = "instance ids of servers to be used in target group for loadbalancer"
 }
 
 variable "security_groups_ids" {
@@ -19,11 +19,11 @@ variable "public_subnet_ids" {
 }
 
 variable "service_names" {
-    type = list(string)
-    description = "names of servers to be used for loadbalancer target groups names"
+  type        = list(string)
+  description = "names of servers to be used for loadbalancer target groups names"
 }
 
 variable "target_group_paths" {
-    type = list(string)
-    description = "paths for servers to be used in loadbalancer target groups"
+  type        = list(string)
+  description = "paths for servers to be used in loadbalancer target groups"
 }
