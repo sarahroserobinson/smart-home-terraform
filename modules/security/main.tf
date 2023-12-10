@@ -63,7 +63,6 @@ resource "aws_security_group_rule" "allow_ssh" {
   to_port           = 22
   protocol          = "tcp"
   cidr_blocks       = ["${chomp(data.http.myipv4address.response_body)}/32"]
-  //ipv6_cidr_blocks  = ["${chomp(data.http.myipv6address.response_body)}/128"]
   security_group_id = aws_security_group.allow_ssh.id
 }
 
