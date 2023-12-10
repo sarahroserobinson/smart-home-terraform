@@ -184,7 +184,7 @@ The Security Module is dedicated to establishing security measures within the VP
 * ipv4_all_cidr_blocks and ipv6_all_cidr_blocks: These locals define CIDR blocks for IPv4 and IPv6, and are used in security group rules to specify the range of IP addresses allowed for traffic.
 
 #### data.tf
-* myipv4address and myipv6address: These data sources fetch the public IPv4 and IPv6 addresses of the user, which are used in the SSH security group rule to restrict SSH access to the user's IP address only.
+* myipv4address: These data sources fetch the public IPv4 address of the user, which are used in the SSH security group rule to restrict SSH access to the user's IP address only.
 
 #### main.tf
 
@@ -357,6 +357,5 @@ Status Server Check:
 
 By systematically following these steps, you can identify and rectify common issues related to API calls, server health, and load balancing in your smart home project. This approach ensures a methodical resolution of issues, minimizing downtime and service disruptions.
 
-
-
+updating to add pull request
 
