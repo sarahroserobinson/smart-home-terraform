@@ -32,6 +32,8 @@ Security Groups:
 
 * Configures security rules to manage and control inbound and outbound traffic for the EC2 instances and the load balancer.
 
+<img src="./media/images/plan-visual.png" width="900">
+
 ### Functional Capabilities
 * Scalability: The infrastructure can automatically adapt to changing load demands, ensuring high performance without manual intervention.
 
@@ -137,7 +139,7 @@ By following these steps, you can set up and manage your smart home project infr
 
 ### Directories and file structure 
 
-<img src="./media/Terraform-project-file-structure.png" width="100">
+<img src="./media/images/Terraform-project-file-structure.png" width="100">
 
 
 The infrastructure has been split into multiple directories which includes modules consisting of each logical component. Each module directory is further explained below. 
@@ -326,16 +328,14 @@ Issues with GET Requests:
 * If GET requests are successful but POST requests are failing, start by examining the format of the JSON object in your requests.
 * Ensure that the JSON payload is correctly structured, using strings inside an object as required by the API.
 
-#### Curl Command Example:
-
 #### Using Insomnia:
 
 Configure GET and POST requests in Insomnia, specifying the appropriate headers and payload as per your API's requirements.
 
 
-<img src="./media/insomnia-heating-post-req.png" width="700">
+<img src="./media/images/insomnia-heating-post-req.png" width="700">
 
-<img src="./media/insomnia-light-switch-post-req.png" width="700">
+<img src="./media/images/insomnia-light-switch-post-req.png" width="700">
 
 API paths to use:
 * GET and POST requests to the lights server *api/lights*

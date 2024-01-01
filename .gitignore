@@ -2,3 +2,4 @@
 *.pem
 *.env
 *.plan
+.plan
