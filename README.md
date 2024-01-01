@@ -8,6 +8,13 @@ The Terraform code acts as a comprehensive script for your cloud infrastructure,
 
 The motivation behind building the Smart Home Project was to gain hands-on experience with AWS and Terraform, and to understand how these technologies can be used to build complex, real-world applications.
 
+## Contents
+1. [Components Deployed](#components-deployed)
+2. [Setup Infrastructure](#setup-infrastructure)
+3. [Directories and File Structure](#directories-and-file-structure) 
+4. [Consideration for Improvement](#consideration-for-improvement)
+5. [Troubleshooting](#troubleshooting)
+
 ### Components Deployed
 Virtual Private Cloud (VPC):
 * Creates a private and secure cloud environment within AWS. This VPC forms the primary network infrastructure for your smart home services, complete with necessary networking elements like subnets, routing tables, and internet gateways.
@@ -33,79 +40,6 @@ Security Groups:
 * Configures security rules to manage and control inbound and outbound traffic for the EC2 instances and the load balancer.
 
 <img src="./media/images/plan-visual.png" width="900">
-
-### Functional Capabilities
-* Scalability: The infrastructure can automatically adapt to changing load demands, ensuring high performance without manual intervention.
-
-* High Availability: through the use of multiple availability zones and load balancing, the setup guarantees a high level of service availability, minimizing downtime.
-
-* Security and Isolation: The VPC and security groups work together to provide a secure and isolated environment, protecting against unauthorized access and external threats.
-
-* Efficient Data Handling: DynamoDB offers a fast and reliable database solution, catering to the smart home's data processing needs.
-
-* Operational Streamlining: Automation via Terraform reduces manual workload and minimizes the likelihood of configuration errors, leading to smoother operations.
-
-* Monitoring and Management: AWS's in-built tools facilitate real-time monitoring and management of your services, allowing for quick issue resolution and maintenance.
-
-
-## Contents
-1. Technologies and Tools
-2. Insights Gained
-3. Challenges
-4. Set Up Infrastructure
-5. Usage
-6. Troubleshooting
-
-### Technologies and Tools
-**Amazon Web Services, Terraform, Virtual Studio Code, Insomnia, Trello**
-
-In this smart home project, a combination of sophisticated technologies and tools were employed to ensure efficient development, deployment, and management of the cloud-based infrastructure:
-* Terraform is a popular Infrastructure as Code software tool that eliminates manual configuration errors and easily duplicates environments for different purposes, such as development, testing and production.
-* AWS offers an extensive array of services that cater to almost every aspect of cloud computing. This range includes compute, storage, database, and network services, all crucial for the diverse needs of a smart home project. AWS offers an incredibly large global network, which was chosen as it can the high availability and scalability needed for this project to run efficiently regardless of the users location. 
-* Used for constructing and testing HTTP requests, Insomnia played a crucial role in interfacing with the project’s APIs. It enabled thorough testing and validation of various API functionalities, ensuring robustness and reliability in API interactions.
-* Visual Studio Code Editor for Terraform Code Served was used for writing and managing the Terraform configurations. Its user-friendly interface, complemented with advanced coding features, contributed to a streamlined and efficient coding process.
-* Trello was instrumental in project management, facilitating the organisation and tracking of tasks through a system of boards and tickets. It helped segment the project into manageable tasks, ensuring systematic progress and effective tracking of development milestones.
-
-## Insights Gained
-
-#### Cloud Infrastructure Proficiency
-Gained a deeper understanding of AWS services, including EC2, VPC, Load Balancers, and DynamoDB. Learned how to effectively leverage these services to build a scalable and resilient infrastructure.
-#### Infrastructure as Code (IaC): 
-Developed skills in using Terraform, appreciating its power in automating and managing cloud infrastructure. This included learning about state management, modularity, and the importance of version control in IaC.
-#### Security Considerations:
-Developed an understanding of the intricacies of cloud security, such as the configuration of security groups, network access control, and best practices in securing cloud resources.
-#### Scalability and High Availability:
-Learnt the practical aspects of creating a highly available system that can scale dynamically. This included balancing load with autoscaling groups and understanding the significance of multi-AZ deployments.
-#### Problem-Solving and Debugging:
- Enhanced problem-solving skills, particularly in debugging issues related to cloud deployments and infrastructure configuration.
-#### Cost Management and Optimization:
- Acquired knowledge on managing and optimizing AWS costs, understanding the pricing model, and how to use resources efficiently.
-
-
-## Challenges 
-Throughout the development of the smart home project, several challenges were encountered, particularly in the areas of infrastructure management and configuration. Here's an overview of these challenges and the considerations for future improvements:
-
-#### Creating AMI Images:
-
-One of the primary challenges involved the creation and management of Amazon Machine Images (AMIs). These images are crucial for launching EC2 instances with pre-configured settings.
-The process of consistently creating and updating these AMIs to reflect the latest configurations posed a significant challenge, especially in maintaining the uniformity of the environment across different instances.
-
-#### Dynamic DNS Hostname Configuration:
-
-The project required updating the .env.local file of the status server with new DNS hostnames each time the underlying EC2 instances were changed or updated.
-This process was not only manual and time-consuming but also prone to errors, impacting the reliability of the status server.
-
-#### Consideration for Improvement: Internal Load Balancer:
-
-To address the challenge of dynamically changing DNS hostnames, the implementation of an internal load balancer is considered.
-The internal load balancer can effectively distribute traffic to the server instances without the need for constantly updating the .env.local file. It abstracts the instance-specific details, providing a stable endpoint for the services.
-By using the load balancer as a consistent entry point, it removes the dependency on individual instance hostnames, thereby enhancing the robustness and scalability of the system.
-
-#### Future Enhancement Strategies:
-
-Automating the process of AMI creation and updates, possibly through a combination of AWS services like EC2 Image Builder and automation scripts.
-Further integration of the load balancing solution with auto-scaling to ensure seamless scaling and load distribution as the demand on the smart home system fluctuates.
-
 
 ## Setup Infrastructure
 
@@ -135,9 +69,8 @@ To run this project, you will need to have the following:
 
 By following these steps, you can set up and manage your smart home project infrastructure in a consistent and repeatable way across different environments. 
 
-## Usage
 
-### Directories and file structure 
+## Directories and File Structure 
 
 <img src="./media/images/Terraform-project-file-structure.png" width="100">
 
@@ -152,10 +85,6 @@ The variables.tf file contains the definition of the variables used throughout t
 * variables.tfvars file contains the values of the variables used throughout the project.
 
 * output.tf file contains any output resources. Although this file and some other outputs.tf files used in modules do not contain any outputs, output.tf files have been created throughout for development environments for use when outputs are required. An example use case is to provide the DNS host names for each server to be used in making HTTP requests. 
-
-
-
-
 
 ### Virtual Private Cloud (VPC) Module
 The VPC Module creates a Virtual Private Cloud where all resources in the project will be hosted on.
@@ -307,6 +236,12 @@ The aws_autoscaling_group resource defines the autoscaling groups.
 
 Currently, this file is empty. It can be used to output resources such as the autoscaling group ids or launch template ids for integration with other AWS services or for management purposes if future service additions are added to the smart home project. 
 
+## Consideration for Improvement
+### Internal Load Balancer
+
+To address the challenge of dynamically changing DNS hostnames, the implementation of an internal load balancer is considered.
+The internal load balancer can effectively distribute traffic to the server instances without the need for constantly updating the .env.local file. It abstracts the instance-specific details, providing a stable endpoint for the services.
+By using the load balancer as a consistent entry point, it removes the dependency on individual instance hostnames, thereby enhancing the robustness and scalability of the system.
 
 ## Troubleshooting
 When encountering issues with the smart home project, particularly with API interactions and server functionality, follow these troubleshooting steps to diagnose and resolve the problems:
